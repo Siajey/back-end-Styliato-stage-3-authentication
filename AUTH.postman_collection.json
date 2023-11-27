@@ -1,0 +1,680 @@
+{
+	"info": {
+		"_postman_id": "40c5a44a-d449-461e-a487-872268078b25",
+		"name": "AUTH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23735241",
+		"_collection_link": "https://orange-shuttle-603982.postman.co/workspace/Stayliato~a2e14772-7f8b-434a-bfca-2699973804bd/collection/23735241-40c5a44a-d449-461e-a487-872268078b25?action=share&source=collection_link&creator=23735241"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"new@gmail.com\",\n    \"phone\": \"12121212121\",\n    \"password\":\"123\",\n    \"userName\":\"man\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SER}}/auth/register",
+							"host": [
+								"{{SER}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/register\n\n  \nregister :\n\n{\n\nuserName: \"(unique string)\",\n\nfirstName: \"string\",\n\nlastName: \"string\",\n\nfullName: \"string\",\n\nphone: \"unique number\",\n\nemail: \"string\",\n\npassword: \"string\",\n\ndocuments: \\[\"string\"\\],\n\ncode: \"string\",\n\ngroup:\n\n\\[\n\n{\n\n_id: \"string\",\n\nname: \"string\",\n\nnumber: number,\n\ndescription: \"string\",\n\niconName: \"string\",\n\n},\n\n\\],  \npermissions:\n\n\\[\n\n{\n\n_id: \"string\",\n\nname: \"string\",\n\nnumber: number,\n\ndescription: \"string\",\n\niconName: \"string\",\n\nlibIconName: \"string\",\n\n},\n\n\\],\n\n};"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('TOKEN',pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"new@gmail.com\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SER}}/auth/login",
+							"host": [
+								"{{SER}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/loginphone  \n\nlogin for phone\n\nphone\n\npassword"
+					},
+					"response": []
+				},
+				{
+					"name": "CheckEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{LOCAL}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/checkphone/EMAIL",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"checkphone",
+								"EMAIL"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/loginname  \n\nuserName\n\npassword"
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('TOKEN',pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"alialiali1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/changepassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"changepassword"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/loginname  \n\nuserName\n\npassword"
+					},
+					"response": []
+				},
+				{
+					"name": "change username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('TOKEN',pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{LOCAL}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/changeusername/NEWUSERNAME",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"changeusername",
+								"NEWUSERNAME"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/loginname  \n\nuserName\n\npassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/forgetpassword/mahdipourjavad1379@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgetpassword",
+								"mahdipourjavad1379@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update  password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\":\"12345678910\",\n    \"newPassword\":\"samsamsam1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/user/updatepassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"updatepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"111111111111111\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/auth/user/resetpassword/bc0260583e4cd9e83aef4bdb72fcac95af49948f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"resetpassword",
+								"bc0260583e4cd9e83aef4bdb72fcac95af49948f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "picture profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profilePhoto\":\"url photo\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/auth/user//picprofile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"",
+								"picprofile"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/auth/user/pictureprofile  \n\n{\n\nprofilePhoto : url photo\n\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "AgainCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/againcode/EMAIL",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"againcode",
+								"EMAIL"
+							]
+						},
+						"description": "http://localhost:9000/api/v1/users/auth/againcode"
+					},
+					"response": []
+				},
+				{
+					"name": "all user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/allusers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"allusers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dev",
+			"item": [
+				{
+					"name": "all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/dev/all",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"dev",
+								"all"
+							]
+						},
+						"description": "http://localhost:9004/api/v1/forum/user/all"
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"11111111118\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SER}}/auth/dev/updateuser/643ab0bf8d9c7d78c01366fa",
+							"host": [
+								"{{SER}}"
+							],
+							"path": [
+								"auth",
+								"dev",
+								"updateuser",
+								"643ab0bf8d9c7d78c01366fa"
+							]
+						},
+						"description": "http://localhost:9004/api/v1/forum/user/all"
+					},
+					"response": []
+				},
+				{
+					"name": "del all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SER}}/auth/dev/delall",
+							"host": [
+								"{{SER}}"
+							],
+							"path": [
+								"auth",
+								"dev",
+								"delall"
+							]
+						},
+						"description": "http://localhost:9004/api/v1/forum/user/all"
+					},
+					"response": []
+				},
+				{
+					"name": "del",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SER}}/auth/dev/del/643a74b58d9c7d78c0135888",
+							"host": [
+								"{{SER}}"
+							],
+							"path": [
+								"auth",
+								"dev",
+								"del",
+								"643a74b58d9c7d78c0135888"
+							]
+						},
+						"description": "http://localhost:9004/api/v1/forum/user/all"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"TOKEN\", pm.response.json().token)",
+					"",
+					"pm.collectionVariables.set('TOKEN',pm.response.json().token);",
+					"",
+					"",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8002/api/v1"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "SER",
+			"value": "http://stayliatoauth.onegroupinnovate.com/api/v1",
+			"type": "string"
+		}
+	]
+}
